@@ -12,30 +12,49 @@ time.sleep(3)
 driver.find_element_by_xpath('//*[@id="username"]').send_keys('bigdataboxing@ruu.kr')
 driver.find_element_by_xpath('//*[@id="password"]').send_keys('Bigdata12')
 driver.find_element_by_xpath('//*[@id="pageOuter"]/div/div[2]/form/div[4]/button').click()
-time.sleep(4)
+time.sleep(3)
 
 #월드 랭킹으로 이동합니다
-driver.get("https://boxrec.com/en/ratings?sex=M")
-time.sleep(4)
+driver.get("https://boxrec.com/en/ratings?sex=M&offset=0")
+time.sleep(3)
 
-#세계 랭킹 페이지를 이동합니다.
-#페이지는 1페이지부터 200 페이지까지로 제한합니다.
-for page in range(2,4):
+timesFifty = int(50) #50페이지씩 이동하는 변수
+
+#페이지는 1페이지부터 150 페이지까지로 제한합니다.
+while timesFifty <= int(7450):
+    world_ranking_page = str('https://boxrec.com/en/ratings?sex=M&offset=' + str(timesFifty))
 
     # 현 페이지의 가장 상단에 위치한 선수부터 최하단의 선수의 페이지까지 이동합니다.
     # 한 페이지에 50명의 선수가 있습니다.
-    for count in range(2):
+    for count in range(50):
         boxerN = int(count)
-        boxerRanking = ('//*[@id="se' + str(boxerN) + '"]/td[2]/a')
+        boxerRanking = str('// *[ @ id = "se' + str(boxerN) + '"] / td[2] / a')
         driver.find_element_by_xpath(boxerRanking).click()
 
+        time.sleep(1)
         #추가 필요: 현 페이지 복서의 데이터를 csv 형태로 저장합니다.
-        #저장할 데이터:
+        # 저장할 데이터:
+        # 이름
+        # ID  #
+        # division
+        # bouts
+        # rounds
+        # KOs
+        # career
+        # titles
+        # age
+        # nationality
+        # stance
+        # height
+        # reach
+        # residence
+        # birth
+        # place
 
         #이전 페이지로 이동합니다.
-        time.sleep(1)
+        time.sleep(2)
         driver.back()
 
     #다음 페이지로 이동합니다.
-    driver.find_element_by_xpath('// *[ @ id = "pageOuter"] / div / div[9] / div[1] / input').send_keys(page)
-    driver.find_element_by_xpath('// *[ @ id = "pageOuter"] / div / div[9] / div[1] / input').send_keys(Keys.ENTER)
+    timesFifty += 50
+    driver.get(world_ranking_page)
