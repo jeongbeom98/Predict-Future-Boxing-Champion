@@ -74,11 +74,11 @@ try:
                 else:  # 캡챠가 나왔을 때 바로 전 페이지 URL / 페이지 # / 선수 # / 선수 이름을 프린트합니다
                     print('프로그램이 Google captcha에 의해 종료되었습니다.')
                     print('종료된 페이지:' + str((timesFifty // 50) + 1))
-                print(df)
+                    print(df)
             else:  # 캡챠가 나왔을 때 바로 전 페이지 URL / 페이지 # / 선수 # / 선수 이름을 프린트합니다
                 print('프로그램이 Google captcha에 의해 종료되었습니다.')
                 print('종료된 페이지:' + str((timesFifty // 50) + 1))
-            print(df)
+                print(df)
         # 다음 페이지로 이동합니다.
         timesFifty += 50
         world_ranking_page = str('https://boxrec.com/en/ratings?sex=M&offset=' + str(timesFifty))
