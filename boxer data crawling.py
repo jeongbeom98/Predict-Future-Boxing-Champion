@@ -12,9 +12,9 @@ driver.implicitly_wait(5) #로딩이 다 다음 페이지로 넘어갑니다
 driver.get("https://boxrec.com/en/login?error=limit")
 
 #로그인 합니다
-driver.find_element_by_xpath('//*[@id="username"]').send_keys('bigdataboxing@ruu.kr')
-driver.find_element_by_xpath('//*[@id="password"]').send_keys('Bigdata12')
-driver.find_element_by_xpath('//*[@id="pageOuter"]/div/div[2]/form/div[4]/button').click()
+driver.find_element(By.XPATH,'//*[@id="username"]').send_keys('bigdataboxing@ruu.kr')
+driver.find_element(By.XPATH,'//*[@id="password"]').send_keys('Bigdata12')
+driver.find_element(By.XPATH,'//*[@id="pageOuter"]/div/div[2]/form/div[4]/button').click()
 
 #월드 랭킹으로 이동합니다
 timesFifty = int(0) #50페이지씩 이동하는 변수
@@ -33,10 +33,9 @@ try:
         for count in range(50):
             if currentURL != captcha:
                 dict_player_info = {}  # 선수 데이터가 들어가는 공 리스트
-
                 boxerN = int(count)
                 boxerRanking = str('// *[ @ id = "se' + str(boxerN) + '"] / td[2] / a')
-                driver.find_element_by_xpath(boxerRanking).click()
+                driver.find_element(By.XPATH,boxerRanking).click()
                 if currentURL != captcha:
 
                     ### 현 페이지 복서의 데이터를 dict 형태로 저장합니다.
@@ -73,12 +72,12 @@ try:
 
                 else:  # 캡챠가 나왔을 때 바로 전 페이지 URL / 페이지 # / 선수 # / 선수 이름을 프린트합니다
                     print('프로그램이 Google captcha에 의해 종료되었습니다.')
-                    print('종료된 페이지:' + str((timesFifty // 50) + 1))
-                    print(df)
+                    print('종료된 페이지:' + str((timesFifty // 50) + 1), '저장된 마지막 사람의 순위:' , (timesFifty // 50)*50 + boxerN)
+                print(df)
             else:  # 캡챠가 나왔을 때 바로 전 페이지 URL / 페이지 # / 선수 # / 선수 이름을 프린트합니다
                 print('프로그램이 Google captcha에 의해 종료되었습니다.')
-                print('종료된 페이지:' + str((timesFifty // 50) + 1))
-                print(df)
+                print('종료된 페이지:' + str((timesFifty // 50) + 1), '저장된 마지막 사람의 순위:' , (timesFifty // 50)*50 + boxerN)
+            print(df)
         # 다음 페이지로 이동합니다.
         timesFifty += 50
         world_ranking_page = str('https://boxrec.com/en/ratings?sex=M&offset=' + str(timesFifty))
@@ -86,11 +85,13 @@ try:
 
     else: # 캡챠가 나왔을 때 바로 전 페이지 URL / 페이지 # / 선수 # / 선수 이름을 프린트합니다
         print('프로그램이 Google captcha에 의해 종료되었습니다.')
-        print('종료된 페이지:' + str((timesFifty // 50) + 1))
-    df.to_csv('boxing_Test.csv', encoding='utf-8', index=False)
+        print('종료된 페이지:' + str((timesFifty // 50) + 1), '저장된 마지막 사람의 순위:' , (timesFifty // 50)*50 + boxerN)
+    df.to_csv('boxing_Test {} {}.csv'.format(str((timesFifty // 50) + 1), (timesFifty // 50)*50 + boxerN), encoding='utf-8', index=False)
     print("완료")
 except:
     print(df)
-    df.to_csv('boxing_Test.csv', encoding='utf-8', index=False)
+    # 비정상적인 종료가 되었을 때 저장될 파일 이름 - boxing_Test {종료될 페이지} {마지막 들어간 사람의 순위} .csv
+    df.to_csv('boxing_Test {} {}.csv'.format(str((timesFifty // 50) + 1), (timesFifty // 50)*50 + boxerN), encoding='utf-8', index=False)
     print("비정상적인 종료")
-    print('종료된 페이지:' + str((timesFifty // 50) + 1))
+    # 비정상적인 종료가 되었을 때 종료된 페이지와 저장된 마지막 사람의 순위를 출력해줍니다
+    print('종료된 페이지:' + str((timesFifty // 50) + 1), '저장된 마지막 사람의 순위:' , (timesFifty // 50)*50 + boxerN)
