@@ -44,25 +44,25 @@ Data Scientist <정범>
 
 [전처리]
 
-# 데이터 전처리 (컬럼별)
-# residence : 나라만 저장
-# ID는 정수로 하면 머신러닝때 영향을 끼칠 수 있기 때문에 str타입으로 변경(머신러닝때는 drop 예정)
-# rating : int로 변환하고 총인원 중 몇 %에 위치하는지 계산 & 아래에 몇명이 있는지로 변환 (e.g 수능 성적 받으면 1등급은 백분위 수가 96으로 되어있는것과 동일한 원리)
-# reach와 height는 단위를 제거하고 int값으로 변환
-# KOs : 단위값 제거하고 float으로 변환
-# career : career가 0이면 일단 debut의 연도와 현재 연도를 빼서 career를 구함 => debut 컬럼은 필요없으니 drop
-# titles, age : int로 형변환
-# division
-# 미니멈, 라이트플라이, 플라이, 슈퍼플라이 : 1
-# 밴텀, 슈퍼밴텀, 페더, 슈퍼페터 : 2
-# 라이트, 슈퍼라이트, 웰터, 슈퍼웰터 : 3
-# 미들, 슈퍼미들, 라이트헤비 : 4
-# 크루저, 헤비 : 5
-# nationality, residence 둘중 하나라도 밑의 리스트에 존재하면
-# li1 = ['USA', 'Mexico', 'United Kingdom'] => 3
-# li2 = ['Russia', 'Japan', 'Ukraine', 'Philippines'] => 2
-# li3 = ['Cuba', 'South Africa', 'Argentina'] => 1
-# 해당 plus_point로 변환
-# stance는 OneHotEncoding으로 orthodox / southpaw / unknown_position 으로 존재하면 1, 존재하지 않으면 0으로 인코딩 후 stance 컬럼 drop
-# 머신러닝을 위해서 object 형태인 컬럼들을 int or float 으로 형변환 해줌
+- 데이터 전처리 (컬럼별)
+- residence : 나라만 저장
+- ID는 정수로 하면 머신러닝때 영향을 끼칠 수 있기 때문에 str타입으로 변경(머신러닝때는 drop 예정)
+- rating : int로 변환하고 총인원 중 몇 %에 위치하는지 계산 & 아래에 몇명이 있는지로 변환 (e.g 수능 성적 받으면 1등급은 백분위 수가 96으로 되어있는것과 동일한 원리)
+- reach와 height는 단위를 제거하고 int값으로 변환
+- KOs : 단위값 제거하고 float으로 변환
+- career : career가 0이면 일단 debut의 연도와 현재 연도를 빼서 career를 구함 => debut 컬럼은 필요없으니 drop
+- titles, age : int로 형변환
+- division
+- 미니멈, 라이트플라이, 플라이, 슈퍼플라이 : 1
+- 밴텀, 슈퍼밴텀, 페더, 슈퍼페터 : 2
+- 라이트, 슈퍼라이트, 웰터, 슈퍼웰터 : 3
+- 미들, 슈퍼미들, 라이트헤비 : 4
+- 크루저, 헤비 : 5
+- nationality, residence 둘중 하나라도 밑의 리스트에 존재하면
+- li1 = ['USA', 'Mexico', 'United Kingdom'] => 3
+- li2 = ['Russia', 'Japan', 'Ukraine', 'Philippines'] => 2
+- li3 = ['Cuba', 'South Africa', 'Argentina'] => 1
+- 해당 plus_point로 변환
+- stance는 OneHotEncoding으로 orthodox / southpaw / unknown_position 으로 존재하면 1, 존재하지 않으면 0으로 인코딩 후 stance 컬럼 drop
+- 머신러닝을 위해서 object 형태인 컬럼들을 int or float 으로 형변환 해줌
 	
