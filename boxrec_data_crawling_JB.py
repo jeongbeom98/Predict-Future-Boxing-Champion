@@ -94,4 +94,4 @@ except:
     df.to_csv('boxing_Test {} {}.csv'.format(str((timesFifty // 50) + 1), (timesFifty // 50)*50 + boxerN), encoding='utf-8', index=False)
     print("비정상적인 종료")
     # 비정상적인 종료가 되었을 때 종료된 페이지와 저장된 마지막 사람의 순위를 출력해줍니다
-    print('종료된 페이지:' + str((timesFifty // 50) + 1), '저장된 마지막 사람의 순위:' , (timesFifty // 50)*50 + boxerN)
+    print('종료된 페이지:' + str((timesFifty // 50) + 1), '저장된 마지막 사람의 순위:' , (timesFifty // 50)*50 + boxerN) 
